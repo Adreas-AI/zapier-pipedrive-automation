@@ -108,8 +108,5 @@ These files document the payload structure and how the fields are mapped to Pipe
 
 ---
 
-# Author
 
 Andreas Andrigiannakis
-
-}
