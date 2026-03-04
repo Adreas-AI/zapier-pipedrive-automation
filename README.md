@@ -1,7 +1,8 @@
 # Zapier → Pipedrive Lead Automation
 
-Automation workflow: **Webhook → Zapier → Pipedrive**  
-It captures lead events via webhook and updates Pipedrive with a note + activities using conditional **Paths**.
+Automation workflow: **Webhook → Zapier → Pipedrive**.
+
+This project demonstrates a Zapier automation that receives lead events via webhook and logs them inside **Pipedrive CRM**.
 
 ---
 
@@ -12,7 +13,7 @@ It captures lead events via webhook and updates Pipedrive with a note + activiti
 
 ---
 
-## Workflow
+## Automation Flow
 1. Webhook receives JSON payload (`name`, `email`, `campaign`, `event`)
 2. Find Person in Pipedrive (by email)
 3. Create Person (if not found)
@@ -24,7 +25,7 @@ It captures lead events via webhook and updates Pipedrive with a note + activiti
 
 ---
 
-## Example Payload
+## Example Webhook Payload
 
 ```json
 {
@@ -32,15 +33,29 @@ It captures lead events via webhook and updates Pipedrive with a note + activiti
   "email": "testlead@example.com",
   "campaign": "linkedin_outreach",
   "event": "reply - user asked for a meeting"
-  "campaign": "linkedin_outreach",
 }
+```
 Files:
 
 webhook_payload_example.json
 
 pipedrive_fields_mapping.json
 
-Screenshots
+Project Structure
+.
+├── README.md
+├── webhook_payload_example.json
+├── pipedrive_fields_mapping.json
+└── screenshots/
+    ├── webhook trigger (catch hook).png
+    ├── find person (Pipedrive).png
+    ├── create person (Pipedrive).png
+    ├── Update person (Pipedrive).png
+    ├── create note (Pipedrive).png
+    └── zapier paths.png
+
+
+Automation Screenshots
 Webhook Trigger (Catch Hook)
 
 Find Person (Pipedrive)
@@ -52,6 +67,38 @@ Update Person (Pipedrive)
 Create Note (Pipedrive)
 
 Zapier Paths
+
+Author
+
+Andreas Andrigiannakis
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
