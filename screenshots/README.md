@@ -28,3 +28,80 @@ Webhook → Zapier → Pipedrive CRM
   "campaign": "linkedin_outreach",
   "event": "reply - user asked for a meeting"
 }
+```
+Files:
+
+- webhook_payload_example.json
+- pipedrive_fields_mapping.json
+
+
+## Project Structure
+
+```text
+.
+├── README.md
+├── webhook_payload_example.json
+├── pipedrive_fields_mapping.json
+└── screenshots/
+    ├── webhook trigger (catch hook).png
+    ├── find person (Pipedrive).png
+    ├── create person (Pipedrive).png
+    ├── Update person (Pipedrive).png
+    ├── create note (Pipedrive).png
+    └── zapier paths.png
+```
+
+## Automation Screenshots
+
+### Webhook Trigger (Catch Hook)
+![Webhook Trigger](./screenshots/webhook%20trigger%20%28catch%20hook%29.png)
+
+### Find Person (Pipedrive)
+![Find Person](./screenshots/find%20person%20%28Pipedrive%29.png)
+
+### Create Person (Pipedrive)
+![Create Person](./screenshots/create%20person%20%28Pipedrive%29.png)
+
+### Update Person (Pipedrive)
+![Update Person](./screenshots/Update%20person%20%28Pipedrive%29.png)
+
+### Create Note (Pipedrive)
+![Create Note](./screenshots/create%20note%20%28Pipedrive%29.png)
+
+### Zapier Paths
+![Zapier Paths](./screenshots/zapier%20paths.png)
+
+---
+
+## Author
+Andreas Andrigiannakis
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
