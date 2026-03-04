@@ -29,7 +29,6 @@ Webhook → Zapier → Pipedrive CRM
 # Example Webhook Payload
 Example payload sent to the Zapier webhook:
 
-```json
 {
 "name": "Test Lead",
 "email": "testlead@example.com",
@@ -44,9 +43,6 @@ webhook_payload_example.json
 pipedrive_fields_mapping.json
 
 These files document the payload structure and how the fields are mapped to Pipedrive.
-
-```markdown
----
 
 # Project Structure
 
