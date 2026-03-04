@@ -1,24 +1,45 @@
 # Zapier → Pipedrive Lead Automation
 
-Automation workflow: **Webhook → Zapier → Pipedrive**  
-It captures lead events via webhook and updates Pipedrive with a note + activities using conditional Paths.
+This project demonstrates a **CRM automation workflow** built with **Zapier Webhooks and Pipedrive**.
 
-## Tools
+The automation captures lead events via webhook and updates the CRM with notes and activities depending on the event type.
+
+---
+
+# Tools Used
+
 - Zapier (Webhooks + Paths)
 - Pipedrive CRM
-- JSON
+- JSON payloads
+- Webhook testing (ReqBin / Postman)
 
-## Workflow
-1. Webhook receives JSON payload (`name`, `email`, `campaign`, `event`)
-2. Find Person in Pipedrive (by email)
-3. Create Person (if not found)
-4. Update Person
-5. Create Note (logs `campaign` + `event`)
-6. Zapier Paths:
-   - **If event contains `reply`** → Create Activity (Meeting)
-   - **If event contains `open`** → Create Activity (Email Opened)
+---
 
-## Example Payload (ReqBin / Postman)
+# Automation Workflow
+
+Webhook → Zapier → Pipedrive
+
+1. Zapier receives lead event via **Webhook (Catch Hook)**
+2. Zapier **Finds Person in Pipedrive** using email
+3. If the person does not exist → **Create Person**
+4. Update the person record
+5. Create a **Note** logging the event and campaign
+6. Use **Zapier Paths** for conditional logic
+
+### Path A
+If event contains **reply**
+
+→ Create Activity: **Meeting**
+
+### Path B
+If event contains **open**
+
+→ Create Activity: **Email Opened**
+
+---
+
+# Example Webhook Payload
+
 ```json
 {
   "name": "Test Lead",
@@ -26,23 +47,3 @@ It captures lead events via webhook and updates Pipedrive with a note + activiti
   "campaign": "linkedin_outreach",
   "event": "reply - user asked for a meeting"
 }
-
-## Screenshots
-
-### Webhook Trigger (Catch Hook)
-![Webhook Trigger](screenshots/webhook%20trigger%20(catch%20hook).png)
-
-### Find Person (Pipedrive)
-![Find Person](screenshots/find%20person%20(Pipedrive).png)
-
-### Create Person (Pipedrive)
-![Create Person](screenshots/create%20person%20(Pipedrive).png)
-
-### Update Person (Pipedrive)
-![Update Person](screenshots/Update%20person%20(Pipedrive).png)
-
-### Create Note (Pipedrive)
-![Create Note](screenshots/create%20note%20(Pipedrive).png)
-
-### Zapier Paths
-![Zapier Paths](screenshots/zapier%20paths.png)
