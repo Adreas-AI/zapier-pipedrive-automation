@@ -47,3 +47,38 @@ If event contains **open**
   "campaign": "linkedin_outreach",
   "event": "reply - user asked for a meeting"
 }
+Screenshots
+Webhook Trigger (Catch Hook)
+
+Find Person (Pipedrive)
+
+Create Person (Pipedrive)
+
+Update Person (Pipedrive)
+
+Create Note (Pipedrive)
+
+Zapier Paths
+
+Repository Files
+
+webhook_payload_example.json
+Example webhook payload used for testing.
+
+pipedrive_fields_mapping.json
+Documents how webhook fields map to Pipedrive and describes the automation flow.
+
+screenshots/
+Screenshots of the Zapier automation steps.
+
+Use Cases
+
+Lead event tracking
+
+CRM automation
+
+Zapier integrations
+
+Webhook-based automation
+
+GTM / RevOps workflows
