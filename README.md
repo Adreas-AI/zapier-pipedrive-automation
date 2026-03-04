@@ -26,3 +26,23 @@ It captures lead events via webhook and updates Pipedrive with a note + activiti
   "campaign": "linkedin_outreach",
   "event": "reply - user asked for a meeting"
 }
+
+## Screenshots
+
+### Webhook Trigger (Catch Hook)
+![Webhook Trigger](screenshots/webhook%20trigger%20(catch%20hook).png)
+
+### Find Person (Pipedrive)
+![Find Person](screenshots/find%20person%20(Pipedrive).png)
+
+### Create Person (Pipedrive)
+![Create Person](screenshots/create%20person%20(Pipedrive).png)
+
+### Update Person (Pipedrive)
+![Update Person](screenshots/Update%20person%20(Pipedrive).png)
+
+### Create Note (Pipedrive)
+![Create Note](screenshots/create%20note%20(Pipedrive).png)
+
+### Zapier Paths
+![Zapier Paths](screenshots/zapier%20paths.png)
