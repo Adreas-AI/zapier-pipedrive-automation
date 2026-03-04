@@ -1,67 +1,52 @@
 {
-  "trigger": "zapier_webhook",
-  "description": "Webhook receives event data and updates Pipedrive contact activity",
+  "project": "zapier-webhook-to-pipedrive",
+  "trigger": "Zapier Webhook (Catch Hook)",
+  "webhook_payload_expected": ["name", "email", "campaign", "event"],
 
   "fields_mapping": [
+    { "webhook_field": "name", "pipedrive_target": "person.name" },
+    { "webhook_field": "email", "pipedrive_target": "person.email" },
     {
-      "webhook_field": "name",
-      "pipedrive_field": "person.name"
-    },
-    {
-      "webhook_field": "email",
-      "pipedrive_field": "person.email"
+      "webhook_field": "campaign",
+      "pipedrive_target": "note.content",
+      "format_hint": "Include campaign in the note text"
     },
     {
       "webhook_field": "event",
-      "pipedrive_field": "note.content"
+      "pipedrive_target": "note.content",
+      "format_hint": "Include event in the note text"
     }
   ],
 
-  "automation_flow": [
-    {
-      "step": 1,
-      "action": "Webhook Trigger",
-      "description": "Zapier receives event data via webhook"
-    },
-    {
-      "step": 2,
-      "action": "Find Person",
-      "description": "Search person in Pipedrive by email"
-    },
-    {
-      "step": 3,
-      "action": "Create Person if not exists",
-      "description": "Create contact if email not found"
-    },
-    {
-      "step": 4,
-      "action": "Update Person",
-      "description": "Update person details if needed"
-    },
+  "flow_steps": [
+    { "step": 1, "zapier_action": "Catch Hook", "result": "Receives JSON payload" },
+    { "step": 2, "zapier_action": "Find Person (Pipedrive)", "key": "email" },
+    { "step": 3, "zapier_action": "Create Person (if not found)", "inputs": ["name", "email"] },
+    { "step": 4, "zapier_action": "Update Person (Pipedrive)", "inputs": ["name"] },
     {
       "step": 5,
-      "action": "Create Note",
-      "description": "Add note describing the event"
+      "zapier_action": "Create Note (Pipedrive)",
+      "note_template": "Campaign: {{campaign}} | Event: {{event}}"
     },
-    {
-      "step": 6,
-      "action": "Zapier Paths",
-      "description": "Branch logic depending on event type"
-    }
+    { "step": 6, "zapier_action": "Paths (conditional branching)", "based_on": "event" }
   ],
 
-  "paths_logic": [
+  "paths": [
     {
+      "path": "A",
       "condition": "event contains 'reply'",
-      "action": "Create Activity",
+      "pipedrive_action": "Create Activity",
       "activity_type": "meeting",
-      "description": "Arrange meeting with lead"
+      "activity_subject_template": "Meeting request (Campaign: {{campaign}})",
+      "activity_note_template": "{{event}}"
     },
     {
+      "path": "B",
       "condition": "event contains 'open'",
-      "action": "Create Activity",
-      "activity_type": "email_open",
-      "description": "Track email opened activity"
+      "pipedrive_action": "Create Activity",
+      "activity_type": "email_opened",
+      "activity_subject_template": "Email opened (Campaign: {{campaign}})",
+      "activity_note_template": "{{event}}"
     }
   ]
 }
