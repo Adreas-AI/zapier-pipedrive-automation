@@ -1,11 +1,19 @@
 # Screenshots
 
-Add here:
+### Webhook Trigger (Catch Hook)
+![Webhook](webhook trigger (catch hook).png)
 
-1. Webhook Trigger (Catch Hook)
-2. Find Person (Pipedrive)
-3. Create Person (if not found)
-4. Update Person
-5. Create Note
-6. Zapier Paths (reply / open)
-7. Create Activity (meeting / email opened)
+### Find Person
+![Find Person](find person (Pipedrive).png)
+
+### Create Person
+![Create Person](create person (Pipedrive).png)
+
+### Update Person
+![Update Person](Update person (Pipedrive).png)
+
+### Create Note
+![Create Note](create note (Pipedrive).png)
+
+### Zapier Paths
+![Paths](zapier paths.png)
