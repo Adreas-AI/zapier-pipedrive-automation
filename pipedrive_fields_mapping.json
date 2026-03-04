@@ -1,0 +1,67 @@
+{
+  "trigger": "zapier_webhook",
+  "description": "Webhook receives event data and updates Pipedrive contact activity",
+
+  "fields_mapping": [
+    {
+      "webhook_field": "name",
+      "pipedrive_field": "person.name"
+    },
+    {
+      "webhook_field": "email",
+      "pipedrive_field": "person.email"
+    },
+    {
+      "webhook_field": "event",
+      "pipedrive_field": "note.content"
+    }
+  ],
+
+  "automation_flow": [
+    {
+      "step": 1,
+      "action": "Webhook Trigger",
+      "description": "Zapier receives event data via webhook"
+    },
+    {
+      "step": 2,
+      "action": "Find Person",
+      "description": "Search person in Pipedrive by email"
+    },
+    {
+      "step": 3,
+      "action": "Create Person if not exists",
+      "description": "Create contact if email not found"
+    },
+    {
+      "step": 4,
+      "action": "Update Person",
+      "description": "Update person details if needed"
+    },
+    {
+      "step": 5,
+      "action": "Create Note",
+      "description": "Add note describing the event"
+    },
+    {
+      "step": 6,
+      "action": "Zapier Paths",
+      "description": "Branch logic depending on event type"
+    }
+  ],
+
+  "paths_logic": [
+    {
+      "condition": "event contains 'reply'",
+      "action": "Create Activity",
+      "activity_type": "meeting",
+      "description": "Arrange meeting with lead"
+    },
+    {
+      "condition": "event contains 'open'",
+      "action": "Create Activity",
+      "activity_type": "email_open",
+      "description": "Track email opened activity"
+    }
+  ]
+}
