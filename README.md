@@ -1,58 +1,28 @@
 # Zapier → Pipedrive Lead Automation
 
-This project demonstrates a CRM automation workflow that captures leads 
-via webhook and automatically creates contacts in Pipedrive using Zapier.
+Automation workflow: **Webhook → Zapier → Pipedrive**  
+It captures lead events via webhook and updates Pipedrive with a note + activities using conditional Paths.
 
 ## Tools
-- Zapier
-- Webhooks
+- Zapier (Webhooks + Paths)
 - Pipedrive CRM
 - JSON
 
 ## Workflow
+1. Webhook receives JSON payload (`name`, `email`, `campaign`, `event`)
+2. Find Person in Pipedrive (by email)
+3. Create Person (if not found)
+4. Update Person
+5. Create Note (logs `campaign` + `event`)
+6. Zapier Paths:
+   - **If event contains `reply`** → Create Activity (Meeting)
+   - **If event contains `open`** → Create Activity (Email Opened)
 
-1. A lead submits data (form / outreach tool)
-2. A webhook sends the lead data in JSON format
-3. Zapier receives the webhook
-4. Zapier maps the fields
-5. Pipedrive creates a new contact or lead
-
-## Example Payload
-
-See: webhook_payload_example.json
-
-## Use Cases
-
-- Lead generation automation
-- CRM integrations
-
-- ## Automation Flow
-
-Webhook → Zapier → Pipedrive CRM
-
-Lead event received via webhook  
-↓  
-Find Person in Pipedrive (by email)  
-↓  
-Create Person (if not exists)  
-↓  
-Update Person  
-↓  
-Create Note (log event)  
-↓  
-Zapier Paths  
-
-Path A  
-If event contains **reply**  
-→ Create Activity: Meeting  
-
-Path B  
-If event contains **open**  
-→ Create Activity: Email Opened
-- Marketing automation
-
-## Screenshots
-
-(See folder: /screenshots)
-
-- Sales pipeline automation
+## Example Payload (ReqBin / Postman)
+```json
+{
+  "name": "Test Lead",
+  "email": "testlead@example.com",
+  "campaign": "linkedin_outreach",
+  "event": "reply - user asked for a meeting"
+}
