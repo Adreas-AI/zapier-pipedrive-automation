@@ -116,5 +116,4 @@ These files document the payload structure and how the fields are mapped to Pipe
 
 Andreas Andrigiannakis
 
-"event": "reply - user asked for a meeting"
 }
