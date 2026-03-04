@@ -1,52 +1,71 @@
 {
-  "project": "zapier-webhook-to-pipedrive",
-  "trigger": "Zapier Webhook (Catch Hook)",
-  "webhook_payload_expected": ["name", "email", "campaign", "event"],
+  "trigger": "zapier_webhook",
+
+  "webhook_payload_expected": [
+    "name",
+    "email",
+    "campaign",
+    "event"
+  ],
 
   "fields_mapping": [
-    { "webhook_field": "name", "pipedrive_target": "person.name" },
-    { "webhook_field": "email", "pipedrive_target": "person.email" },
+    {
+      "webhook_field": "name",
+      "pipedrive_field": "person.name"
+    },
+    {
+      "webhook_field": "email",
+      "pipedrive_field": "person.email"
+    },
     {
       "webhook_field": "campaign",
-      "pipedrive_target": "note.content",
-      "format_hint": "Include campaign in the note text"
+      "pipedrive_field": "note.content"
     },
     {
       "webhook_field": "event",
-      "pipedrive_target": "note.content",
-      "format_hint": "Include event in the note text"
+      "pipedrive_field": "note.content"
     }
   ],
 
-  "flow_steps": [
-    { "step": 1, "zapier_action": "Catch Hook", "result": "Receives JSON payload" },
-    { "step": 2, "zapier_action": "Find Person (Pipedrive)", "key": "email" },
-    { "step": 3, "zapier_action": "Create Person (if not found)", "inputs": ["name", "email"] },
-    { "step": 4, "zapier_action": "Update Person (Pipedrive)", "inputs": ["name"] },
+  "automation_flow": [
+    {
+      "step": 1,
+      "action": "Catch Hook (Zapier)"
+    },
+    {
+      "step": 2,
+      "action": "Find Person (Pipedrive)",
+      "search_field": "email"
+    },
+    {
+      "step": 3,
+      "action": "Create Person (if not exists)"
+    },
+    {
+      "step": 4,
+      "action": "Update Person"
+    },
     {
       "step": 5,
-      "zapier_action": "Create Note (Pipedrive)",
-      "note_template": "Campaign: {{campaign}} | Event: {{event}}"
+      "action": "Create Note",
+      "template": "Campaign: {{campaign}} | Event: {{event}}"
     },
-    { "step": 6, "zapier_action": "Paths (conditional branching)", "based_on": "event" }
+    {
+      "step": 6,
+      "action": "Zapier Paths"
+    }
   ],
 
-  "paths": [
+  "paths_logic": [
     {
-      "path": "A",
       "condition": "event contains 'reply'",
-      "pipedrive_action": "Create Activity",
-      "activity_type": "meeting",
-      "activity_subject_template": "Meeting request (Campaign: {{campaign}})",
-      "activity_note_template": "{{event}}"
+      "action": "Create Activity",
+      "activity_type": "meeting"
     },
     {
-      "path": "B",
       "condition": "event contains 'open'",
-      "pipedrive_action": "Create Activity",
-      "activity_type": "email_opened",
-      "activity_subject_template": "Email opened (Campaign: {{campaign}})",
-      "activity_note_template": "{{event}}"
+      "action": "Create Activity",
+      "activity_type": "email_opened"
     }
   ]
 }
