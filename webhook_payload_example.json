@@ -1,8 +1,6 @@
 {
-  "name": "John Doe",
-  "email": "john@example.com",
-  "company": "Example Ltd",
+  "name": "Test Lead",
+  "email": "testlead@example.com",
   "campaign": "linkedin_outreach",
-  "last_event": "form_submission",
-  "instantly_lead_id": "9834234"
+  "event": "reply - user asked for a meeting"
 }
