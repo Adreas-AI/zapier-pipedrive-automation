@@ -25,5 +25,29 @@ See: webhook_payload_example.json
 
 - Lead generation automation
 - CRM integrations
+
+- ## Automation Flow
+
+Webhook → Zapier → Pipedrive CRM
+
+Lead event received via webhook  
+↓  
+Find Person in Pipedrive (by email)  
+↓  
+Create Person (if not exists)  
+↓  
+Update Person  
+↓  
+Create Note (log event)  
+↓  
+Zapier Paths  
+
+Path A  
+If event contains **reply**  
+→ Create Activity: Meeting  
+
+Path B  
+If event contains **open**  
+→ Create Activity: Email Opened
 - Marketing automation
 - Sales pipeline automation
