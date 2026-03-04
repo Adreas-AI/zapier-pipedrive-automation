@@ -1,108 +1,21 @@
-# Zapier → Pipedrive Lead Automation
+# Zapier → Pipedrive Automation (Webhook → CRM)
 
-Automation workflow: **Webhook → Zapier → Pipedrive**.
+Simple Zapier automation that receives lead events via webhook and logs them into **Pipedrive**.
 
-This project demonstrates a Zapier automation that receives lead events via webhook and logs them inside **Pipedrive CRM**.
+## What it does
+- Receives a webhook payload (`name`, `email`, `campaign`, `event`)
+- Finds or creates a Person in Pipedrive (by email)
+- Updates the Person
+- Creates a Note with campaign + event details
+- Uses Zapier Paths for conditional logic (e.g. reply/open)
 
----
+## Files
+- `webhook_payload_example.json` — sample incoming webhook payload
+- `pipedrive_fields_mapping.json` — field mapping / notes about the Zap setup
 
-## Tools
-- Zapier (Webhooks + Paths)
-- Pipedrive CRM
-- JSON
+## Screenshots
+Screenshots of the Zap steps are available in the `screenshots/` folder:
+- `screenshots/` (contains PNGs + an optional README with visuals)
 
----
-
-## Automation Flow
-1. Webhook receives JSON payload (`name`, `email`, `campaign`, `event`)
-2. Find Person in Pipedrive (by email)
-3. Create Person (if not found)
-4. Update Person
-5. Create Note (logs `campaign` + `event`)
-6. Zapier Paths:
-   - If event contains `reply` → Create Activity (Meeting)
-   - If event contains `open` → Create Activity (Email Opened)
-
----
-
-## Example Webhook Payload
-
-```json
-{
-  "name": "Test Lead",
-  "email": "testlead@example.com",
-  "campaign": "linkedin_outreach",
-  "event": "reply - user asked for a meeting"
-}
-```
-Files:
-
-webhook_payload_example.json
-
-pipedrive_fields_mapping.json
-
-Project Structure
-.
-├── README.md
-├── webhook_payload_example.json
-├── pipedrive_fields_mapping.json
-└── screenshots/
-    ├── webhook trigger (catch hook).png
-    ├── find person (Pipedrive).png
-    ├── create person (Pipedrive).png
-    ├── Update person (Pipedrive).png
-    ├── create note (Pipedrive).png
-    └── zapier paths.png
-
-
-Automation Screenshots
-Webhook Trigger (Catch Hook)
-
-Find Person (Pipedrive)
-
-Create Person (Pipedrive)
-
-Update Person (Pipedrive)
-
-Create Note (Pipedrive)
-
-Zapier Paths
-
-Author
-
+## Author
 Andreas Andrigiannakis
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  "event": "reply - user asked for a meeting"
-}
