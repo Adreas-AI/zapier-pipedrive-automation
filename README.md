@@ -50,4 +50,9 @@ Path B
 If event contains **open**  
 → Create Activity: Email Opened
 - Marketing automation
+
+## Screenshots
+
+(See folder: /screenshots)
+
 - Sales pipeline automation
